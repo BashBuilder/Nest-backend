@@ -18,17 +18,12 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": [
-      "vitest/globals",
-      "node"
-    ],
+    "types": ["node", "vitest/globals"],
     "paths": {
-      "@app/common": [
-        "./libs/common/src/index.ts"
-      ],
-      "@app/common/*": [
-        "./libs/common/src/*"
-      ]
+      "@app/common": ["./libs/common/src/index.ts"],
+      "@app/common/*": ["./libs/common/src/*"],
+      "@app/kafka": ["./libs/kafka/src/index.ts"],
+      "@app/kafka/*": ["./libs/kafka/src/*"]
     }
   },
   "files": [],
