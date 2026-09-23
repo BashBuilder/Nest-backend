@@ -2,14 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
-import { AppModule } from './../src/app.module.js';
+import { AuthServiceModule } from './../src/auth-service.module.js';
+import { describe, beforeEach, it, afterEach } from 'vitest';
 
-describe('AppController (e2e)', () => {
+describe('AuthServiceController (e2e)', () => {
   let app: INestApplication<App>;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AuthServiceModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
