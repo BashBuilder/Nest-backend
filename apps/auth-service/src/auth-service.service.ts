@@ -87,9 +87,7 @@ export class AuthServiceService implements OnModuleInit {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const token = this.jwtService.sign({ userId: user.id, email: user.email });
-
-    console.log('userId in login: ', user.id);
+    const token = this.jwtService.sign({ sub: user.id, email: user.email });
 
     this.kafkaClient.emit(KAFKA_TOPICS.USER_LOGIN, {
       userId: user.id,

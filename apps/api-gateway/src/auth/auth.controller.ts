@@ -1,4 +1,4 @@
-import { Body, Controller, Headers, Post } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Post } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { LoginDto, RegisterDto } from '@app/common/dtos/index.js';
 
@@ -16,9 +16,8 @@ export class AuthController {
     return await this.authService.login(data);
   }
 
-  @Post('profile')
+  @Get('profile')
   async getProfile(@Headers('authorization') authorization: string) {
-    // const token = authorization.replace('Bearer ', '');
     return await this.authService.getProfile(authorization);
   }
 }

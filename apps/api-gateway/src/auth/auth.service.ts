@@ -5,12 +5,13 @@ import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  private readonly authServiceUrl = `http:localhost:${SERVICES_PORTS.AUTH_SERVICE}`;
+  private readonly authServiceUrl = `http://localhost:${SERVICES_PORTS.AUTH_SERVICE}`;
 
   constructor(private readonly httpService: HttpService) {}
 
   async register(data: RegisterDto) {
     try {
+      console.log('Registering user with data:', data);
       const response = await firstValueFrom(
         this.httpService.post(`${this.authServiceUrl}/register`, data),
       );
@@ -35,7 +36,7 @@ export class AuthService {
     try {
       const response = await firstValueFrom(
         this.httpService.get(`${this.authServiceUrl}/profile`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: token },
         }),
       );
       return response.data;
