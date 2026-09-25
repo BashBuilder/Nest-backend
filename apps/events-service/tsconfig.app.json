@@ -1,10 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "removeComments": true,
-    "declaration": true,
+    "declaration": false,
     "rootDir": "../..",
-    "outDir": "../../dist/libs/common"
+    "outDir": "../../dist/apps/events-service"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
