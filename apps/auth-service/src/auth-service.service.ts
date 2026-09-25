@@ -29,7 +29,11 @@ export class AuthServiceService implements OnModuleInit {
 
   async register(registerDto: RegisterDto) {
     // check if user already exists in the database
-    const existingUser = await this.dbService.db
+    console.log(
+      'Checking if user already exists in the database..., registerDto: ',
+      registerDto,
+    );
+    const [existingUser] = await this.dbService.db
       .select()
       .from(users)
       .where(eq(users.email, registerDto.email))
@@ -84,6 +88,8 @@ export class AuthServiceService implements OnModuleInit {
     }
 
     const token = this.jwtService.sign({ userId: user.id, email: user.email });
+
+    console.log('userId in login: ', user.id);
 
     this.kafkaClient.emit(KAFKA_TOPICS.USER_LOGIN, {
       userId: user.id,
