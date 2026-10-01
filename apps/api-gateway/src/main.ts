@@ -13,7 +13,7 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-
   await app.listen(SERVICES_PORTS.API_GATEWAY);
+  console.log('API Gateway is running on port', SERVICES_PORTS.API_GATEWAY);
 }
 await bootstrap();

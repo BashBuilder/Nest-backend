@@ -15,5 +15,6 @@ async function bootstrap() {
   );
 
   await app.listen(SERVICES_PORTS.EVENT_SERVICE);
+  console.log('Event service is running on port', SERVICES_PORTS.EVENT_SERVICE);
 }
 await bootstrap();

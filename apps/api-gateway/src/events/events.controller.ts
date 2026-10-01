@@ -39,10 +39,14 @@ export class EventsController {
   @Post()
   create(
     @Body() createEventDto: CreateEventDto,
-    @Headers('x-user-id') userId: string,
-    @Headers('x-user-role') userRole: string,
+    @Request() req: { user: { userId: string; role?: string } },
   ) {
-    return this.eventService.createEvent(createEventDto, userId, userRole);
+    console.log(req.user);
+    return this.eventService.createEvent(
+      createEventDto,
+      req.user.userId,
+      req.user.role ?? 'USER',
+    );
   }
 
   @UseGuards(AuthGuard('jwt'))
