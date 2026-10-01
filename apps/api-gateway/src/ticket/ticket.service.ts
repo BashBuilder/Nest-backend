@@ -77,7 +77,7 @@ export class TicketService {
   async cancel(id: string, userId: string, userRole: string) {
     try {
       const { data } = await firstValueFrom(
-        this.httpService.put(`${this.ticketServiceUrl}/${id}/cancel`, null, {
+        this.httpService.post(`${this.ticketServiceUrl}/${id}/cancel`, null, {
           headers: {
             'x-user-id': userId,
             'x-user-role': userRole,
@@ -93,7 +93,7 @@ export class TicketService {
   async checkIn(id: string, organizerId: string) {
     try {
       const { data } = await firstValueFrom(
-        this.httpService.put(`${this.ticketServiceUrl}/${id}/checkin`, null, {
+        this.httpService.post(`${this.ticketServiceUrl}/${id}/checkin`, null, {
           headers: {
             'x-user-id': organizerId,
           },

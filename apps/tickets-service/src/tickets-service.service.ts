@@ -47,7 +47,9 @@ export class TicketsServiceService implements OnModuleInit {
     }
 
     const soldTickets = await this.dbService.db
-      .select({ total: sql<number>`COALESCE(SUM($tickets.quantity), 0)` })
+      .select({
+        total: sql<number>`COALESCE(SUM(${tickets.quantity}), 0)`,
+      })
       .from(tickets)
       .where(
         and(eq(tickets.eventId, eventId), eq(tickets.status, 'CONFIRMED')),
