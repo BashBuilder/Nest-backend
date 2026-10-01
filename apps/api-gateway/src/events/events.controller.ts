@@ -41,7 +41,6 @@ export class EventsController {
     @Body() createEventDto: CreateEventDto,
     @Request() req: { user: { userId: string; role?: string } },
   ) {
-    console.log(req.user);
     return this.eventService.createEvent(
       createEventDto,
       req.user.userId,
