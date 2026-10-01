@@ -1,4 +1,11 @@
-import { integer, pgEnum, pgTable, uuid, timestamp } from 'drizzle-orm/pg-core';
+import {
+  integer,
+  pgEnum,
+  pgTable,
+  uuid,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/pg-core';
 import { events, users } from './index.js';
 
 export const ticketStatusEnum = pgEnum('ticket_status', [
@@ -18,6 +25,7 @@ export const tickets = pgTable('tickets', {
     .references(() => users.id),
   quantity: integer('quantity').notNull().default(1),
   totalPrice: integer('total_price').notNull().default(0),
+  ticketCode: varchar('ticket_code', { length: 20 }).notNull().unique(),
   status: ticketStatusEnum('status').notNull().default('PENDING'),
   purchasedAt: timestamp('purchased_at').notNull().defaultNow(),
   checkedInAt: timestamp('checked_in_at'),

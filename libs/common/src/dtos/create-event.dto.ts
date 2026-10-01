@@ -31,7 +31,7 @@ export class CreateEventDto {
   @IsInt({ message: 'Price is required' })
   @Min(0, { message: 'Price must be greater than 0' })
   @Max(10000, { message: 'Price must be less than 10000' })
-  price!: string;
+  price!: number;
 
   @IsString({ message: 'Date is required' })
   @IsNotEmpty({ message: 'Date is required' })

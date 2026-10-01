@@ -1,4 +1,11 @@
-import { pgTable, uuid, varchar, timestamp, pgEnum } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  uuid,
+  varchar,
+  timestamp,
+  pgEnum,
+  numeric,
+} from 'drizzle-orm/pg-core';
 import { users } from './users.js';
 
 export const eventStatusEnum = pgEnum('event_status', [
@@ -15,7 +22,7 @@ export const events = pgTable('events', {
   date: timestamp('date').notNull(),
   location: varchar('location', { length: 255 }).notNull(),
   capacity: varchar('capacity', { length: 255 }).notNull(),
-  price: varchar('price', { length: 255 }).notNull(),
+  price: numeric('price', { precision: 10, scale: 2 }).notNull(),
   organizerId: uuid('organizer_id')
     .notNull()
     .references(() => users.id),
