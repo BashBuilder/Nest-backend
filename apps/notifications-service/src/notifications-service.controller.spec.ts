@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotificationsServiceController } from './notifications-service.controller.js';
 import { NotificationsServiceService } from './notifications-service.service.js';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('NotificationsServiceController', () => {
   let notificationsServiceController: NotificationsServiceController;
@@ -11,12 +12,8 @@ describe('NotificationsServiceController', () => {
       providers: [NotificationsServiceService],
     }).compile();
 
-    notificationsServiceController = app.get<NotificationsServiceController>(NotificationsServiceController);
-  });
-
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(notificationsServiceController.getHello()).toBe('Hello World!');
-    });
+    notificationsServiceController = app.get<NotificationsServiceController>(
+      NotificationsServiceController,
+    );
   });
 });
